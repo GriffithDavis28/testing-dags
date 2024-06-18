@@ -1,0 +1,22 @@
+[2024-06-16T08:01:22.632+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-16T08:01:22.668+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: status_dag_v2.logging manual__2024-06-16T08:01:20.902939+00:00 [queued]>
+[2024-06-16T08:01:22.684+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: status_dag_v2.logging manual__2024-06-16T08:01:20.902939+00:00 [queued]>
+[2024-06-16T08:01:22.684+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-16T08:01:22.699+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): logging> on 2024-06-16 08:01:20.902939+00:00
+[2024-06-16T08:01:22.707+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=2509) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-16T08:01:22.708+0000] {standard_task_runner.py:63} INFO - Started process 2510 to run task
+[2024-06-16T08:01:22.711+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'status_dag_v2', 'logging', 'manual__2024-06-16T08:01:20.902939+00:00', '--job-id', '22', '--raw', '--subdir', 'DAGS_FOLDER/skipDAG.py', '--cfg-path', '/tmp/tmpztc2i0w9']
+[2024-06-16T08:01:22.713+0000] {standard_task_runner.py:91} INFO - Job 22: Subtask logging
+[2024-06-16T08:01:22.763+0000] {task_command.py:426} INFO - Running <TaskInstance: status_dag_v2.logging manual__2024-06-16T08:01:20.902939+00:00 [running]> on host 15cc12e76742
+[2024-06-16T08:01:22.873+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='ariflow' AIRFLOW_CTX_DAG_ID='status_dag_v2' AIRFLOW_CTX_TASK_ID='logging' AIRFLOW_CTX_EXECUTION_DATE='2024-06-16T08:01:20.902939+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-16T08:01:20.902939+00:00'
+[2024-06-16T08:01:22.873+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-16T08:01:22.900+0000] {skipDAG.py:39} INFO - failed
+[2024-06-16T08:01:22.912+0000] {skipDAG.py:41} INFO - None
+[2024-06-16T08:01:22.921+0000] {skipDAG.py:43} INFO - None
+[2024-06-16T08:01:22.930+0000] {skipDAG.py:45} INFO - None
+[2024-06-16T08:01:22.931+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-06-16T08:01:22.931+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-16T08:01:22.945+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=status_dag_v2, task_id=logging, run_id=manual__2024-06-16T08:01:20.902939+00:00, execution_date=20240616T080120, start_date=20240616T080122, end_date=20240616T080122
+[2024-06-16T08:01:22.962+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-16T08:01:22.976+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-16T08:01:22.976+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
