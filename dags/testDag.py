@@ -20,7 +20,7 @@ default_args = {
 }
 
 dag = DAG(
-    dag_id='dag_test_v1',
+    dag_id='dag_test',
     schedule_interval=timedelta(minutes=5),
     start_date=datetime.now(),
     default_args=default_args
@@ -87,6 +87,8 @@ def store_skipped_state(dag_id, **kwargs):
                 cursor.execute(insert_query, (dag_id, row[0], row[1], datetime.now(), 1, skips_allowed))
 
                 logging.info(f'new data: {row}')
+            else:
+                update_skip_count(dag_id=dag_id)
         
 
         conn.commit()
@@ -130,6 +132,7 @@ def update_skip_count(dag_id, **kwargs):
 
         for task_id, skip_count in skipped_tasks:
             logging.info(f'task_id = {task_id} and skip_count = {skip_count}')
+            
             new_skip_count = skip_count+1
 
             logging.info(f'updated skip count = {new_skip_count}')
