@@ -20,7 +20,7 @@ default_args = {
 }
 
 dag = DAG(
-    dag_id='dag_test',
+    dag_id='dag_test_2',
     schedule_interval=timedelta(minutes=5),
     start_date=datetime.now(),
     default_args=default_args
@@ -71,14 +71,14 @@ def store_skipped_state(dag_id, **kwargs):
         logging.info(f'incoming data: {len(rows)}')
 
         for row in rows:
-
+            logging.info(f'task_id: {row[0]}, state: {row[1]}')
             check_record = """
                 SELECT COUNT(*) from public.skipped_data WHERE dag_id=%s AND task_id=%s;
             """
             cursor.execute(check_record, (dag_id, row[0]))
             count= cursor.fetchone()[0]
-            logging.info('checking if record already exists....')
-            logging.info(f'{count}')
+            logging.info(f'checking if record already exists....')
+
 
             if count==0:
                 insert_query = """
@@ -87,9 +87,6 @@ def store_skipped_state(dag_id, **kwargs):
                 cursor.execute(insert_query, (dag_id, row[0], row[1], datetime.now(), 1, skips_allowed))
 
                 logging.info(f'new data: {row}')
-            else:
-                update_skip_count(dag_id=dag_id)
-        
 
         conn.commit()
         cursor.close()
