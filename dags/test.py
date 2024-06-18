@@ -1,8 +1,4 @@
-import psycopg2
-import logging
-from config.dbConfig import db_connection_config
-
-def connect_to_db():
+def fecth_data(dag_id, **kwargs):
     logging.info("Establising connection in connect_to_db method...")
     
     try:
@@ -14,11 +10,23 @@ def connect_to_db():
             database=db_connection_config["database"]
         )
 
+        cursor = conn.cursor()
+
+        select_query= """SELECT dag_id, state FROM task_instance WHERE dag_id=%s AND state='skipped';"""
+
+        cursor.execute(select_query, (dag_id,))
+
+        rows = cursor.fetchall()
+
+        for row in rows:
+            logging.info(row)
+            print(f'Data: {row}')
+
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+
         logging.info("Connection established")
-        print("Connected")
     except Exception as e:
         logging.error(f'Something went wrong. -->>  {e}')
-
-
-if __name__=="__main__":
-    connect_to_db()
